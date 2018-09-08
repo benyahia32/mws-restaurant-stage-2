@@ -63,7 +63,7 @@ self.addEventListener("install", event => {
 
  event.waitUntil(
    caches.open(cacheName).then(cache => cache.addAll(urlsToCache))
-                         .catch(error => console.error('💩', error))
+                         .catch(error => console.error('Error', error))
  );
 });
 

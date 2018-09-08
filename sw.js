@@ -11,6 +11,8 @@ self.addEventListener("install", event => {
            "./data/restaurants.json",
            "./js/dbhelper.js",
            "./js/main.js",
+           "./manifest.json",
+           "./favicon.ico",
            "./js/restaurant_info.js",
            "./images/1-1600_large.jpg",
            "./images/1-400_small.jpg",
@@ -58,6 +60,7 @@ self.addEventListener("install", event => {
 
  event.waitUntil(
    caches.open(cacheName).then(cache => cache.addAll(urlsToCache))
+                         .catch(error => console.error('💩', error))
  );
 });
 
@@ -98,3 +101,12 @@ self.addEventListener("fetch", event => {
    })
  );
 });
+
+
+/* is redundant
+ https://stackoverflow.com/questions/47904382/service-worker-dont-work-anymore
+ https://github.com/vuejs-templates/pwa/issues/183
+https://github.com/w3c/ServiceWorker/issues/1046
+https://bitsofco.de/the-service-worker-lifecycle/
+https://stackoverflow.com/questions/49262734/service-worker-showing-as-deleted-even-though-registration-was-successful
+*/

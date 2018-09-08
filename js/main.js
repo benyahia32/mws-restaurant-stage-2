@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', {
         scope: '/'
       }).then( registration => {
-         console.log('Service worker registeration successful');
+         console.log('Service worker registeration successful');         
       }).catch(err => {
          console.log('Service worker registration failed');
       })
@@ -171,7 +171,7 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.alt = `${restaurant.name} restaurant, ${restaurant.shortDesc}`;
+  image.alt = `${restaurant.name} `;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.srcset = DBHelper.imageSetUrlForRestaurant(restaurant);
   li.append(image);

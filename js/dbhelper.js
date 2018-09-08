@@ -14,13 +14,14 @@ const idbApp = (function() {
   });
 
    function addRestaurantById(restaurant) {
-    dbPromise.then(function(db) {
+    return dbPromise.then(function(db) {
       const tx = db.transaction('restaurants', 'readwrite');
       const store = tx.objectStore('restaurants');
-      return store.put(restaurant);
-    }).catch(function(e) {
-      tx.abort();
-      console.log("Unable to add restaurant to IndexedDB", e);
+      store.put(restaurant);
+      return tx.complete;
+    }).catch(function(error) {
+      // tx.abort();
+      console.log("Unable to add restaurant to IndexedDB", error);
     });
   }
 
@@ -91,7 +92,7 @@ class DBHelper {
           } else {
             const restaurant = restaurants.find(r => r.id == id);
             if (restaurant) { // Got the restaurant
-              idbApp.addRestaurantById(restaurant); // adding restaurant to IndexedDB
+              let idbMessages = idbApp.addRestaurantById(restaurant); // adding restaurant to IndexedDB
               console.log("GC: fetchRestaurantById from network");
               callback(null, restaurant);
             } else { // Restaurant does not exist in the database

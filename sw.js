@@ -9,6 +9,7 @@ self.addEventListener("install", event => {
            "./restaurant.html",
            "./css/styles.css",
            "./data/restaurants.json",
+           './js/idb.js',
            "./js/dbhelper.js",
            "./js/main.js",
            "./manifest.json",
@@ -44,6 +45,7 @@ self.addEventListener("install", event => {
            "./images/9-1600_large.jpg",
            "./images/9-400_small.jpg",
            "./images/9-800_medium.jpg",
+           './img/marker-icon-2x-red.png',
            "./restaurant.html?id=1",
            "./restaurant.html?id=2",
            "./restaurant.html?id=3",
@@ -54,6 +56,7 @@ self.addEventListener("install", event => {
            "./restaurant.html?id=8",
            "./restaurant.html?id=9",
            "./restaurant.html?id=10",
+           'http://localhost:1337/restaurants/',
            'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
            'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css'
  ];

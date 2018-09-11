@@ -1,4 +1,4 @@
-const cacheName = "mws-restaurant-project";
+const cacheName = "restaurant-v1";
 const offlineUrl = "index.html";
 
 self.addEventListener("install", event => {
@@ -67,6 +67,23 @@ self.addEventListener("install", event => {
  );
 });
 
+
+ self.addEventListener("activate", event => {
+        event.waitUntil(
+            caches.keys().then(cacheNames => {
+                return Promise.all(
+                    cacheNames.filter(cacheName => {
+                        return cacheName.startsWith("restaurant-") &&
+                            cacheName != staticCacheName
+                    }).map(cacheName => {
+                        return caches.delete(cacheName);
+                    })
+                )
+            })
+        );
+    });
+
+ 
 self.addEventListener("fetch", event => {
  event.respondWith(
    // check to see whether the request exists in the cache or not

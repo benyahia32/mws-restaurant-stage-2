@@ -16,5 +16,6 @@
   "start_url": "/",
   "background_color": "#fdfdfd",
   "display": "standalone",
+  "description": "Udacity MWS Nanodegree Restaurant Project Stage 2",
   "theme_color": "#252831"
 }

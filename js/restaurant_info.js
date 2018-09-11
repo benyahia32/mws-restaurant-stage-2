@@ -1,3 +1,15 @@
+let shortDesc = ["classical indoor decoration",
+                 "enjoy large mozzarella pizzas",
+                 "large mozzarella pizza",
+                 "beautiful entrance at street corner",
+                 "cool open kitchen",
+                 "classical American dinying room with flag",
+                 "two men wating at thec cosy entrance",
+                 "classical european atmosphere",
+                 "busy but relaxed ambiance",
+                 "tidy and clean"
+         ];
+
 let restaurant;
 var newMap;
 
@@ -82,7 +94,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
-  image.alt = `${restaurant.name} `;
+  //image.alt = `${restaurant.name} `;
+  image.alt = `${restaurant.name} restaurant, ${shortDesc[restaurant.id-1]}`;
   image.tabIndex = 0;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.srcset = DBHelper.imageSetUrlForRestaurant(restaurant);

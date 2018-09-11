@@ -4,6 +4,19 @@ let restaurants,
 var newMap
 var markers = []
 
+let shortDesc = ["classical indoor decoration",
+                 "enjoy large mozzarella pizzas",
+                 "large mozzarella pizza",
+                 "beautiful entrance at street corner",
+                 "cool open kitchen",
+                 "classical American dinying room with flag",
+                 "two men wating at thec cosy entrance",
+                 "classical european atmosphere",
+                 "busy but relaxed ambiance",
+                 "tidy and clean"
+         ]
+
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     if (navigator.serviceWorker) {
@@ -171,7 +184,9 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.alt = `${restaurant.name} `;
+  //image.alt = `${restaurant.name} `;
+  image.alt = `${restaurant.name} restaurant, ${shortDesc[restaurant.id-1]}`;
+  //console.log(image.alt);
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.srcset = DBHelper.imageSetUrlForRestaurant(restaurant);
   li.append(image);

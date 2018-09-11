@@ -3,6 +3,12 @@
  */
 const idbApp = (function() {
   'use strict';
+
+  // we don't care about having a database
+    if (!navigator.serviceWorker) {
+        return Promise.resolve();
+    }
+
   
    const dbPromise = idb.open('restaurantreviews', 1, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {

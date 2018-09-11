@@ -105,11 +105,3 @@ self.addEventListener("fetch", event => {
  );
 });
 
-
-/* is redundant
- https://stackoverflow.com/questions/47904382/service-worker-dont-work-anymore
- https://github.com/vuejs-templates/pwa/issues/183
-https://github.com/w3c/ServiceWorker/issues/1046
-https://bitsofco.de/the-service-worker-lifecycle/
-https://stackoverflow.com/questions/49262734/service-worker-showing-as-deleted-even-though-registration-was-successful
-*/

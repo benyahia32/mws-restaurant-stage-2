@@ -217,6 +217,26 @@ class DBHelper {
       return (`/images/${restaurant.id}-1600_large.jpg 1200w, /images/${restaurant.id}-800_medium.jpg 800w, /images/${restaurant.id}-400_small.jpg 400w` );
   }
 
+/**
+   * Restaurant image alt.
+   */
+  static imageAltForRestaurant(restaurant) {
+    let shortDesc = ["classical indoor decoration",
+                 "enjoy large mozzarella pizzas",
+                 "large mozzarella pizza",
+                 "beautiful entrance at street corner",
+                 "cool open kitchen",
+                 "classical American dinying room with flag",
+                 "two men wating at thec cosy entrance",
+                 "classical european atmosphere",
+                 "busy but relaxed ambiance",
+                 "tidy and clean"
+         ]
+
+    return (`${restaurant.name} restaurant, ${shortDesc[restaurant.id-1]}`);
+  }
+
+
   /**
    * Map marker for a restaurant.
    */

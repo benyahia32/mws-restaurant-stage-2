@@ -83,42 +83,39 @@ self.addEventListener("install", event => {
         );
     });
 
- 
-self.addEventListener("fetch", event => {
- event.respondWith(
-   // check to see whether the request exists in the cache or not
-   caches.match(event.request).then(response => {
-     if (response) {
-       return response;
-     }
 
-   // if it doesn't exist, add response into the cache
-   // in the case of failed fetch, fall back to cached offline source
-     const fetchRequest = event.request.clone();
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
 
-     return fetch(fetchRequest)
-       .then(response => {
-         if (!response || response.status !== 200) {
-           return response;
-         }
+        // IMPORTANT: Clone the request.
+        var fetchRequest = event.request.clone();
 
-         const responseToCache = response.clone();
+        return fetch(fetchRequest).then(
+          function(response) {
+            // Check if we received a valid response
+            if(!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
 
-         caches.open(cacheName).then(cache => {
-           cache.put(event.request, responseToCache);
-         });
+            // IMPORTANT: Clone the response.
+            var responseToCache = response.clone();
 
-         return response;
-       })
-       .catch(error => {
-         if (
-           event.request.method === "GET" &&
-           event.request.headers.get("accept").includes("text/html")
-         ) {
-           return caches.match(offlineUrl);
-         }
-       });
-   })
- );
+            caches.open(cacheName)
+              .then(function(cache) {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          }
+        );
+      })
+    );
 });
+
 
